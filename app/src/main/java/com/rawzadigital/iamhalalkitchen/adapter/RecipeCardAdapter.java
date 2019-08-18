@@ -34,6 +34,8 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Ca
 
     @Override
     public void onBindViewHolder(@NonNull RecipeCardAdapter.CardViewHolder holder, int position) {
+
+
         Recipe recipe = listRecipe.get(position);
 
         holder.tvTitleRecipe.setText(recipe.getRecipeTitle());
