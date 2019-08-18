@@ -1,94 +1,68 @@
 package com.rawzadigital.iamhalalkitchen.adapter;
 
-import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.rawzadigital.iamhalalkitchen.R;
-import com.rawzadigital.iamhalalkitchen.pojo.RecipeModel;
+import com.rawzadigital.iamhalalkitchen.pojo.Recipe;
 
 import java.util.ArrayList;
 
 public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.CardViewHolder> {
 
-    private Context context;
-    private ArrayList<RecipeModel> listRecipe;
+    private ArrayList<Recipe>listRecipe;
 
-    public RecipeCardAdapter(Context context) {
-        this.context = context;
-    }
-
-    public ArrayList<RecipeModel> getListRecipe() {
-        return listRecipe;
-    }
-
-    public void setListRecipe(ArrayList<RecipeModel> listRecipe) {
+    public RecipeCardAdapter(ArrayList<Recipe> listRecipe) {
         this.listRecipe = listRecipe;
     }
 
     @NonNull
     @Override
-    public CardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        View viewRecipe = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_recipes,
-                viewGroup, false);
-        return new CardViewHolder(viewRecipe);
+    public RecipeCardAdapter.CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_recipes, parent, false);
+        return new CardViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardViewHolder cardViewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecipeCardAdapter.CardViewHolder holder, int position) {
+        Recipe recipe = listRecipe.get(position);
 
-        RecipeModel recipeModel = getListRecipe().get(i);
+        holder.tvTitleRecipe.setText(recipe.getRecipeTitle());
+        holder.tvAuthorRecipe.setText(recipe.getRecipeAuthor());
+        holder.tvBtnTryRecipe.setText(recipe.getRecipeContent());
 
-        Glide.with(context)
-                .load(recipeModel.getRecipeImage())
-                .apply(new RequestOptions().override(500,500))
-                .into(cardViewHolder.recipeImage);
-
-        cardViewHolder.recipeTitle.setText(recipeModel.getRecipeTitle());
-        cardViewHolder.recipeTime.setText(recipeModel.getRecipeTime());
-
-        cardViewHolder.recipeTry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(context, "Try Clicked", Toast.LENGTH_SHORT).show();
-                // TODO: To detail recipe article
-
-            }
-        });
-
+        Glide.with(holder.itemView.getContext())
+                .load(recipe.getRecipeImage())
+                .apply(new RequestOptions().override(88,88))
+                .into(holder.imgRecipes);
     }
 
     @Override
     public int getItemCount() {
-        return getListRecipe().size();
+        return listRecipe.size();
     }
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView recipeImage;
-        TextView recipeTitle, recipeTime, recipeTry;
-
+        ImageView imgRecipes;
+        TextView tvTitleRecipe, tvAuthorRecipe, tvBtnTryRecipe;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            recipeImage = itemView.findViewById(R.id.img_recipe);
-            recipeTitle = itemView.findViewById(R.id.title_recipe);
-            recipeTime = itemView.findViewById(R.id.time_recipe);
-            recipeTry = itemView.findViewById(R.id.try_recipe);
-
+            imgRecipes = itemView.findViewById(R.id.img_recipe);
+            tvTitleRecipe = itemView.findViewById(R.id.tv_title_recipe);
+            tvAuthorRecipe = itemView.findViewById(R.id.tv_author_recipe);
+            tvBtnTryRecipe = itemView.findViewById(R.id.tv_btn_try_recipe);
         }
     }
-
-
 }

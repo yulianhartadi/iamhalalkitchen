@@ -35,20 +35,19 @@ import com.rawzadigital.iamhalalkitchen.R;
 import com.rawzadigital.iamhalalkitchen.adapter.RecipeCardAdapter;
 import com.rawzadigital.iamhalalkitchen.data.RecipeData;
 import com.rawzadigital.iamhalalkitchen.pojo.Image;
-import com.rawzadigital.iamhalalkitchen.pojo.RecipeModel;
+import com.rawzadigital.iamhalalkitchen.pojo.Recipe;
 import com.rawzadigital.iamhalalkitchen.pojo.Tools;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvMainActivity;
-    private ArrayList<RecipeModel> listRecipe;
-    private Toolbar toolbar;
+    private ArrayList<Recipe> listRecipe = new ArrayList<>();
 
-    private LinearLayout linearLayout;
+    private Toolbar toolbar;
+    private LinearLayout linearLayoutDots;
     private ViewPager viewPager;
     private AdapterImageSlider adapterImageSlider;
 
@@ -86,25 +85,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvMainActivity = findViewById(R.id.rv_main_activity);
-        rvMainActivity.setHasFixedSize(true);
-
-        listRecipe = new ArrayList<>();
-        listRecipe.addAll(RecipeData.getListData());
-        // listRecipe.addAll(RecipeData.getListDataImage());
 
         setupToolbar();
         setupDrawerMenu();
-        showCardList();
+
+        rvMainActivity = findViewById(R.id.rv_main_activity);
+        rvMainActivity.setHasFixedSize(true);
+        listRecipe.addAll(RecipeData.getListData());
+        showCardRecipeList();
+
         setupSlider();
 
     }
 
-    private void showCardList() {
+    // RecyclerView RecipeList
+    private void showCardRecipeList() {
+
         rvMainActivity.setLayoutManager(new LinearLayoutManager(this));
-        RecipeCardAdapter recipeCardAdapter = new RecipeCardAdapter(this);
-        recipeCardAdapter.setListRecipe(listRecipe);
+        RecipeCardAdapter recipeCardAdapter = new RecipeCardAdapter(listRecipe);
         rvMainActivity.setAdapter(recipeCardAdapter);
+
     }
 
     private void setupToolbar() {
@@ -136,11 +136,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        drawerLayout.openDrawer(GravityCompat.START);
+        // To open drawer @first
+        //drawerLayout.openDrawer(GravityCompat.START);
     }
 
     private void setupSlider() {
-        linearLayout = findViewById(R.id.layout_dots);
+        linearLayoutDots = findViewById(R.id.layout_dots);
         viewPager = findViewById(R.id.slider_pager);
 
         AdapterImageSlider adapterImageSlider = new AdapterImageSlider(this, new ArrayList<Image>());

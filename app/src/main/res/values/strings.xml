@@ -2,8 +2,8 @@
     <string name="app_name">iam halal kitchen</string>
     <string name="imagefood">ImageFood</string>
     <string name="dummy_text_food">Chill Coke and Full Burger</string>
-    <string name="try_recipe">TRY</string>
-    <string name="cook_timer">27 min</string>
+    <string name="try_recipe">Detail</string>
+    <string name="by">Ruhana Ebraheem</string>
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -30,7 +30,7 @@
                 android:padding="@dimen/sp_middle">
 
                 <TextView
-                    android:id="@+id/title_recipe"
+                    android:id="@+id/tv_title_recipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".7"
@@ -47,14 +47,14 @@
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/imagefood"
-                        android:padding="@dimen/sp_x_small"
-                        android:src="@drawable/ic_access_time_white" />
+                        android:padding="@dimen/sp_medium"
+                        android:src="@drawable/ic_face" />
 
                     <TextView
-                        android:id="@+id/time_recipe"
+                        android:id="@+id/tv_author_recipe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/cook_timer"
+                        android:text="@string/by"
                         android:textColor="@android:color/white" />
 
                 </LinearLayout>
@@ -72,8 +72,9 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/cyan_600">
+
                 <TextView
-                    android:id="@+id/try_recipe"
+                    android:id="@+id/tv_btn_try_recipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
