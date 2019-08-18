@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.CardViewHolder> {
 
-    private ArrayList<Recipe>listRecipe;
+    private ArrayList<Recipe> listRecipe;
 
     public RecipeCardAdapter(ArrayList<Recipe> listRecipe) {
         this.listRecipe = listRecipe;
@@ -35,7 +35,6 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Ca
     @Override
     public void onBindViewHolder(@NonNull RecipeCardAdapter.CardViewHolder holder, int position) {
 
-
         Recipe recipe = listRecipe.get(position);
 
         holder.tvTitleRecipe.setText(recipe.getRecipeTitle());
@@ -44,7 +43,7 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Ca
 
         Glide.with(holder.itemView.getContext())
                 .load(recipe.getRecipeImage())
-                .apply(new RequestOptions().override(88,88))
+                .apply(new RequestOptions().override(500, 500))
                 .into(holder.imgRecipes);
     }
 

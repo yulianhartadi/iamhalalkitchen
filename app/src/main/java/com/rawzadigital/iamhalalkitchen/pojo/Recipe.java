@@ -2,7 +2,10 @@ package com.rawzadigital.iamhalalkitchen.pojo;
 
 public class Recipe {
 
-    private String recipeTitle, recipeAuthor, recipeContent, recipeImage;
+    private String recipeTitle;
+    private String recipeAuthor;
+    private String recipeContent;
+    private String recipeImage;
 
     public String getRecipeTitle() {
         return recipeTitle;

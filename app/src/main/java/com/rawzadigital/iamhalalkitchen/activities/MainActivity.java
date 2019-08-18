@@ -22,7 +22,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         setupToolbar();
         setupDrawerMenu();
 
@@ -147,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         AdapterImageSlider adapterImageSlider = new AdapterImageSlider(this, new ArrayList<Image>());
 
         final List<Image> items = new ArrayList<>();
-        for (int i = 0; i < imageSlider.length; i++){
+        for (int i = 0; i < imageSlider.length; i++) {
             Image obj = new Image();
             obj.image = imageSlider[i];
             obj.title = titleSlider[i];
@@ -195,12 +193,12 @@ public class MainActivity extends AppCompatActivity {
             void onItemClick(View view, Image object);
         }
 
-        private void setOnItemClickListener(AdapterImageSlider.OnItemClickListener onItemClickListener){
+        private void setOnItemClickListener(AdapterImageSlider.OnItemClickListener onItemClickListener) {
             this.onItemClickListener = onItemClickListener;
         }
 
         //Constructor
-        private AdapterImageSlider(Activity activity, List<Image> items){
+        private AdapterImageSlider(Activity activity, List<Image> items) {
             this.activity = activity;
             this.items = items;
         }
@@ -210,11 +208,11 @@ public class MainActivity extends AppCompatActivity {
             return this.items.size();
         }
 
-        public Image getItem(int pos){
+        public Image getItem(int pos) {
             return items.get(pos);
         }
 
-        public void setItems(List<Image> items){
+        public void setItems(List<Image> items) {
             this.items = items;
             notifyDataSetChanged();
         }
@@ -225,8 +223,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position){
-            final Image o =items.get(position);
+        public Object instantiateItem(ViewGroup container, int position) {
+            final Image o = items.get(position);
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = inflater.inflate(R.layout.item_slider, container, false);
 
@@ -238,7 +236,8 @@ public class MainActivity extends AppCompatActivity {
             layoutParent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    if (onItemClickListener != null ){}
+                    if (onItemClickListener != null) {
+                    }
                     onItemClickListener.onItemClick(v, o);
                 }
             });
@@ -249,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object){
+        public void destroyItem(ViewGroup container, int position, Object object) {
             (container).removeView((RelativeLayout) object);
         }
 
